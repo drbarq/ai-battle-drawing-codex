@@ -1,0 +1,10 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/add": "pages/add.js",
+  "/": "pages/index.js",
+  "/new-confirmation": "pages/new-confirmation.js",
+  "/plants/[id]": "pages/plants/[id].js",
+  "/plants/[id]/water": "pages/plants/[id]/water.js"
+}
