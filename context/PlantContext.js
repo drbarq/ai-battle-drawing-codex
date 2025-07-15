@@ -1,15 +1,15 @@
-import { createContext, useContext, useEffect, useReducer } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const PlantContext = createContext();
 
 function plantReducer(state, action) {
   switch (action.type) {
-    case 'init':
+    case "init":
       return action.payload;
-    case 'add':
+    case "add":
       return [...state, action.payload];
-    case 'water':
+    case "water":
       return state.map((p) =>
         p.id === action.payload ? { ...p, lastWatered: Date.now() } : p
       );
@@ -22,14 +22,14 @@ export function PlantProvider({ children }) {
   const [plants, dispatch] = useReducer(plantReducer, []);
 
   useEffect(() => {
-    const stored = localStorage.getItem('plants');
+    const stored = localStorage.getItem("plants");
     if (stored) {
-      dispatch({ type: 'init', payload: JSON.parse(stored) });
+      dispatch({ type: "init", payload: JSON.parse(stored) });
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('plants', JSON.stringify(plants));
+    localStorage.setItem("plants", JSON.stringify(plants));
   }, [plants]);
 
   function addPlant(name, interval) {
@@ -39,12 +39,12 @@ export function PlantProvider({ children }) {
       interval: parseInt(interval, 10),
       lastWatered: null,
     };
-    dispatch({ type: 'add', payload: newPlant });
+    dispatch({ type: "add", payload: newPlant });
     return newPlant;
   }
 
   function waterPlant(id) {
-    dispatch({ type: 'water', payload: id });
+    dispatch({ type: "water", payload: id });
   }
 
   return (
